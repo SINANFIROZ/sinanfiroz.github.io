@@ -1,43 +1,24 @@
 // Theme Toggle Functionality
-function setupThemeToggle() {
+document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     
-    if (!themeToggle || !themeIcon) {
-        console.error('Theme toggle elements not found!');
-        return;
-    }
-    
-    console.log('Theme toggle setup started');
-    
-    // Check for saved theme preference or default to light mode
+    // Check for saved theme preference
     const currentTheme = localStorage.getItem('theme') || 'light';
-    console.log('Current theme from storage:', currentTheme);
     
     // Apply saved theme on page load
     if (currentTheme === 'dark') {
         document.body.classList.add('dark-theme');
         themeIcon.classList.remove('fa-moon');
         themeIcon.classList.add('fa-sun');
-        console.log('Applied dark theme');
-    } else {
-        document.body.classList.remove('dark-theme');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-        console.log('Applied light theme');
     }
-    
+
     // Toggle theme when clicking the theme button
     themeToggle.addEventListener('click', function() {
-        console.log('Theme toggle clicked');
-        
-        // Toggle dark class on body
         document.body.classList.toggle('dark-theme');
-        const isDarkTheme = document.body.classList.contains('dark-theme');
-        console.log('Dark theme applied:', isDarkTheme);
         
-        // Update icon
-        if (isDarkTheme) {
+        // Update icon and save preference
+        if (document.body.classList.contains('dark-theme')) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
             localStorage.setItem('theme', 'dark');
@@ -46,13 +27,31 @@ function setupThemeToggle() {
             themeIcon.classList.add('fa-moon');
             localStorage.setItem('theme', 'light');
         }
-        
-        // Trigger a resize event to refresh Three.js
-        window.dispatchEvent(new Event('resize'));
     });
+});
+
+// Mobile Navigation
+document.addEventListener('DOMContentLoaded', function() {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
     
-    console.log('Theme toggle setup completed');
-}
+    burger.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        
+        // Animate links
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+            }
+        });
+        
+        // Toggle burger animation
+        burger.classList.toggle('toggle');
+    });
+});
 
 // Optimize Three.js for mobile devices
 function isLowPowerDevice() {
@@ -98,62 +97,14 @@ function createStars(scene) {
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
     
+    // Make starMaterial globally accessible for theme toggle
+    window.starMaterial = starMaterial;
+    
     return { stars, starMaterial };
-}
-
-// Fix burger menu functionality
-function setupMobileNavigation() {
-    console.log("Setting up mobile navigation");
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li');
-    
-    if (!burger || !nav) {
-        console.error("Burger menu elements not found!");
-        return;
-    }
-    
-    console.log("Burger and nav elements found");
-    
-    // Toggle navigation when clicking burger
-    burger.addEventListener('click', function() {
-        console.log("Burger clicked");
-        nav.classList.toggle('active');
-        
-        // Animate links
-        navLinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-            }
-        });
-        
-        // Toggle burger animation
-        burger.classList.toggle('toggle');
-    });
-    
-    // Close menu when clicking a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-            burger.classList.remove('toggle');
-            
-            navLinks.forEach(link => {
-                link.style.animation = '';
-            });
-        });
-    });
-    
-    console.log("Mobile navigation setup complete");
 }
 
 // Three.js setup for hero section
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize theme toggle and mobile navigation
-    setupThemeToggle();
-    setupMobileNavigation();
-    
     console.log("Initializing Three.js");
     
     // Get canvas element
@@ -248,19 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
     animate();
     console.log("Three.js animation started");
 
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetElement = document.querySelector(this.getAttribute('href'));
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
     // Scroll Animation for Elements
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
