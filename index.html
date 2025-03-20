@@ -223,6 +223,15 @@
                               burger ? "burger found" : "burger missing", 
                               nav ? "nav found" : "nav missing");
             }
+            
+            // Add links click listener
+            const navLinks = document.querySelectorAll('.nav-links li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                    burger.classList.remove('toggle');
+                });
+            });
         });
     </script>
 </body>
