@@ -10,25 +10,27 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">SINAN FIROZ</div>
-        <ul class="nav-links">
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="theme-toggle">
-            <i class="fas fa-moon" id="theme-icon"></i>
-        </div>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <div class="logo">SINAN FIROZ</div>
+            <ul class="nav-links">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
 
     <section id="home" class="hero">
         <canvas id="heroCanvas"></canvas>
@@ -200,39 +202,6 @@
         <p>&copy; 2024 Sinan Firoz.</p>
     </footer>
 
-    <!-- Make sure script is loaded -->
-    <script>
-        // Ensure the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("Document loaded, checking mobile navigation");
-            
-            // Burger menu functionality
-            const burger = document.querySelector('.burger');
-            const nav = document.querySelector('.nav-links');
-            
-            if (burger && nav) {
-                console.log("Setting up burger click listener");
-                
-                burger.addEventListener('click', function() {
-                    console.log("Burger clicked!");
-                    nav.classList.toggle('active');
-                    burger.classList.toggle('toggle');
-                });
-            } else {
-                console.error("Burger menu elements not found:", 
-                              burger ? "burger found" : "burger missing", 
-                              nav ? "nav found" : "nav missing");
-            }
-            
-            // Add links click listener
-            const navLinks = document.querySelectorAll('.nav-links li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    nav.classList.remove('active');
-                    burger.classList.remove('toggle');
-                });
-            });
-        });
-    </script>
+    <!-- External JS -->
 </body>
 </html>
