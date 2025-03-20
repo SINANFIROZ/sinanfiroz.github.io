@@ -47,11 +47,14 @@ body {
 
 /* Theme toggle */
 .theme-toggle {
-    margin-left: 1rem;
     cursor: pointer;
     font-size: 1.3rem;
     color: var(--heading-color);
     transition: var(--transition);
+    margin-left: 1rem;
+    padding: 8px;
+    border-radius: 50%;
+    z-index: 1001;
 }
 
 .theme-toggle:hover {
@@ -79,15 +82,18 @@ body {
     font-weight: bold;
     color: var(--heading-color);
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .nav-links li {
-    margin-left: 2rem;
+    margin: 0 1rem;
 }
 
 .nav-links a {
@@ -95,6 +101,8 @@ body {
     color: var(--heading-color);
     font-weight: 500;
     transition: var(--transition);
+    display: block;
+    padding: 0.5rem 0;
 }
 
 .nav-links a:hover {
@@ -713,48 +721,6 @@ footer {
     transition: var(--transition);
 }
 
-/* Mobile Navigation */
-.burger {
-    display: none;
-    cursor: pointer;
-    z-index: 1001;
-    background-color: var(--primary-color);
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: white; /* Always white for better visibility */
-    margin: 5px;
-    transition: all 0.3s ease;
-}
-
-.burger.toggle .line1 {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.burger.toggle .line2 {
-    opacity: 0;
-}
-
-.burger.toggle .line3 {
-    transform: rotate(45deg) translate(-5px, -6px);
-}
-
-/* Animation for navigation links */
-@keyframes navLinkFade {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 /* Media Queries */
 @media screen and (max-width: 1200px) {
     .certifications-content {
@@ -795,150 +761,63 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-    /* General spacing */
-    .section, .about, .skills-section, .education, .projects, .certifications, .contact {
-        padding: 1rem 5%;
+    /* Navigation for mobile */
+    .navbar {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     }
     
-    section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-    }
-    
-    /* Navigation */
     .nav-links {
         position: fixed;
-        right: -100%;
-        top: 70px;
-        height: calc(100vh - 70px);
-        background-color: var(--bg-color);
-        flex-direction: column;
+        bottom: 70px;
+        left: 0;
         width: 100%;
-        text-align: center;
-        transition: right 0.5s ease;
-        z-index: 999;
-        padding-top: 20px;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .nav-links li {
-        margin: 2rem 0;
-        opacity: 0;
-    }
-    
-    .nav-links li a {
-        font-size: 1.2rem;
-        display: block;
-        padding: 10px;
-    }
-    
-    .nav-links.active li {
-        animation: navLinkFade 0.5s ease forwards;
-    }
-    
-    /* Adjust animation delay for each link */
-    .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
-    .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
-    .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
-    .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
-    .nav-links.active li:nth-child(5) { animation-delay: 0.5s; }
-    .nav-links.active li:nth-child(6) { animation-delay: 0.6s; }
-
-    /* Show burger on mobile */
-    .burger {
-        display: block;
-        position: relative;
-        margin-left: 20px;
-    }
-    
-    /* Navbar layout for mobile */
-    .navbar {
+        background-color: var(--bg-color);
+        box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 0;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 5%;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        overflow-x: auto;
     }
     
-    /* Position theme toggle next to burger */
+    .nav-links li {
+        margin: 0;
+        flex: 1;
+        text-align: center;
+        white-space: nowrap;
+    }
+    
+    .nav-links a {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Adjust hero section to account for bottom nav */
+    .hero {
+        padding-bottom: 120px;
+    }
+    
+    /* Move theme toggle to top right */
     .theme-toggle {
-        margin-right: 20px;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
         z-index: 1001;
     }
     
-    /* Ensure the burger and theme toggle are visible */
-    .theme-toggle, .burger {
-        display: block !important;
+    /* Add padding to sections to account for bottom nav */
+    .section, .about, .skills-section, .education, .projects, .certifications, .contact {
+        padding-bottom: 100px !important;
     }
     
-    /* Add a bottom border to show active menu */
-    .navbar.scrolled {
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Hero section */
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-name {
-        font-size: 0.9rem !important;
-        margin-bottom: 1.5rem;
-    }
-    
-    .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    .hero-buttons .cta-button {
-        margin: 0;
-    }
-
-    /* About section */
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-image {
-        max-width: 250px;
-        margin: 0 auto 2rem;
-    }
-
-    .about-text {
-        padding-right: 0;
-        text-align: center;
-    }
-    
-    /* Skills section */
-    .skills-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .skill-item ul {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Education section */
-    .education-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    /* Contact section */
-    .contact-buttons {
-        flex-direction: column;
-    }
-    
-    /* Certifications */
-    .certification-item h3 {
-        font-size: 1rem;
+    /* Add padding to footer for bottom nav */
+    footer {
+        margin-bottom: 70px;
     }
 }
 
@@ -1060,10 +939,6 @@ footer {
     color: var(--heading-color);
 }
 
-.dark-theme .burger div {
-    background-color: var(--heading-color);
-}
-
 .dark-theme .about-text p,
 .dark-theme .contact-info p,
 .dark-theme .project-card p {
@@ -1093,13 +968,9 @@ footer {
     color: var(--secondary-color);
 }
 
-/* Debug - outline for theme toggle */
-.theme-toggle {
-    margin-left: 1rem;
-    cursor: pointer;
-    font-size: 1.3rem;
-    color: var(--heading-color);
-    transition: transform 0.3s ease, color 0.3s ease;
-    padding: 8px;
-    border-radius: 50%;
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    .theme-toggle {
+        margin-right: 20px;
+    }
 } 
