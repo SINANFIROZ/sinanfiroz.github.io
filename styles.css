@@ -817,6 +817,8 @@ footer {
         text-align: center;
         transition: right 0.5s ease;
         z-index: 999;
+        padding-top: 20px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links.active {
@@ -825,18 +827,56 @@ footer {
 
     .nav-links li {
         margin: 2rem 0;
+        opacity: 0;
     }
+    
+    .nav-links li a {
+        font-size: 1.2rem;
+        display: block;
+        padding: 10px;
+    }
+    
+    .nav-links.active li {
+        animation: navLinkFade 0.5s ease forwards;
+    }
+    
+    /* Adjust animation delay for each link */
+    .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+    .nav-links.active li:nth-child(5) { animation-delay: 0.5s; }
+    .nav-links.active li:nth-child(6) { animation-delay: 0.6s; }
 
     /* Show burger on mobile */
     .burger {
-        order: 3;
         display: block;
+        position: relative;
+        margin-left: 20px;
+    }
+    
+    /* Navbar layout for mobile */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
     }
     
     /* Position theme toggle next to burger */
     .theme-toggle {
-        order: 2;
-        margin-right: 15px;
+        margin-right: 20px;
+        z-index: 1001;
+    }
+    
+    /* Ensure the burger and theme toggle are visible */
+    .theme-toggle, .burger {
+        display: block !important;
+    }
+    
+    /* Add a bottom border to show active menu */
+    .navbar.scrolled {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 
     /* Hero section */
