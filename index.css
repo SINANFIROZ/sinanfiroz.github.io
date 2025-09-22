@@ -162,7 +162,7 @@ body {
 .nav-links a {
     text-decoration: none;
     color: var(--heading-color);
-    font-weight: 550;
+    font-weight: 600;
     transition: var(--transition);
     display: block;
     padding: 0.5rem 0.75rem;
