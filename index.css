@@ -162,15 +162,15 @@ body {
 .nav-links a {
     text-decoration: none;
     color: var(--heading-color);
-    font-weight: 600;
+    font-weight: 550;
     transition: var(--transition);
     display: block;
-    padding: 0.5rem 0.75rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 0.85rem;
+    font-size: 0.65rem;
     min-width: fit-content;
 }
 
