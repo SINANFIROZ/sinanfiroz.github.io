@@ -165,12 +165,12 @@ body {
     font-weight: 550;
     transition: var(--transition);
     display: block;
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 8px;
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     min-width: fit-content;
 }
 
