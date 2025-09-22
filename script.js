@@ -28,6 +28,48 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('theme', 'light');
         }
     });
+
+    // Add smooth scroll behavior for navigation links
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Add active navigation highlighting
+    function updateActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPosition = window.scrollY + 100;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                // Remove active class from all nav links
+                navLinks.forEach(link => link.classList.remove('active'));
+                // Add active class to current section's nav link
+                const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
 });
 
 // Mobile Navigation
@@ -74,7 +116,7 @@ function createStars(scene) {
     const particleSize = isLowPower ? 1.5 : 2;
     
     // Set color based on theme
-    let starColor = document.body.classList.contains('dark-theme') ? 0x4ea8de : 0x3498db;
+    let starColor = document.body.classList.contains('dark-theme') ? 0x818cf8 : 0x667eea;
     
     const starMaterial = new THREE.PointsMaterial({
         color: starColor,
@@ -158,8 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
-            const isDarkTheme = document.body.classList.contains('dark-theme');
-            starMaterial.color.set(isDarkTheme ? 0x4ea8de : 0x3498db);
+            setTimeout(() => {
+                const isDarkTheme = document.body.classList.contains('dark-theme');
+                if (window.starMaterial) {
+                    window.starMaterial.color.set(isDarkTheme ? 0x818cf8 : 0x667eea);
+                }
+            }, 50);
         });
     }
 
