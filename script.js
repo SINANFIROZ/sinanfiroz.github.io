@@ -77,7 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li');
+    const navLinkAnchors = document.querySelectorAll('.nav-links a');
     
+    // Toggle menu when burger is clicked
     burger.addEventListener('click', function() {
         nav.classList.toggle('active');
         
@@ -92,6 +94,32 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Toggle burger animation
         burger.classList.toggle('toggle');
+    });
+    
+    // Close menu when clicking on navigation links
+    navLinkAnchors.forEach(link => {
+        link.addEventListener('click', function() {
+            nav.classList.remove('active');
+            burger.classList.remove('toggle');
+            
+            // Reset animations
+            navLinks.forEach(navLink => {
+                navLink.style.animation = '';
+            });
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+            nav.classList.remove('active');
+            burger.classList.remove('toggle');
+            
+            // Reset animations
+            navLinks.forEach(navLink => {
+                navLink.style.animation = '';
+            });
+        }
     });
 });
 
