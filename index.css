@@ -103,6 +103,30 @@ body {
     color: var(--primary-color);
 }
 
+/* Burger menu - hidden by default, shown on mobile */
+.burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1002;
+    transition: var(--transition);
+    padding: 5px;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background: var(--heading-color);
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.theme-toggle:hover {
+    transform: rotate(20deg) scale(1.1);
+    color: var(--primary-color);
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
@@ -1391,11 +1415,14 @@ footer {
     
     /* Show burger menu on mobile */
     .burger {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         cursor: pointer;
         z-index: 1002;
         transition: var(--transition);
+        padding: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
     }
     
     .burger div {
@@ -1441,11 +1468,6 @@ footer {
         height: 100vh;
         background: rgba(0, 0, 0, 0.5);
         z-index: -1;
-    }
-    
-    /* Hide burger menu by default on desktop */
-    .burger {
-        display: none;
     }
 
     /* Adjust hero section */
