@@ -348,6 +348,18 @@ body {
     border-color: var(--primary-color);
 }
 
+.hero-buttons .cta-button.tertiary {
+    background: var(--gradient-2);
+    color: white;
+    border: none;
+    backdrop-filter: blur(20px);
+}
+
+.dark-theme .hero-buttons .cta-button.tertiary {
+    background: var(--gradient-2);
+    color: white;
+}
+
 .hero-buttons .cta-button:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: var(--shadow-xl);
