@@ -1386,7 +1386,7 @@ footer {
         padding-top: 100px;
         transition: right 0.3s ease-in-out;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
+        z-index: 2000;
     }
     
     .nav-links.active {
@@ -1460,18 +1460,6 @@ footer {
         background: transparent;
         font-size: 1.2rem;
         padding: 0.5rem;
-    }
-    
-    /* Overlay when menu is open */
-    .nav-links.active::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: -1;
     }
 
     /* Adjust hero section */
