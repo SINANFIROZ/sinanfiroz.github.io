@@ -1325,60 +1325,129 @@ footer {
     .navbar {
         position: fixed;
         top: 0;
-        bottom: auto;
         width: 100%;
-        padding: 0.8rem 1rem;
-        background-color: var(--bg-color);
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        min-height: 60px;
+        min-height: 70px;
+    }
+    
+    .dark-theme .navbar {
+        background: rgba(15, 23, 42, 0.95);
     }
     
     .logo {
-        font-size: 1.2rem;
-        order: 1;
+        font-size: 1.4rem;
+        z-index: 1002;
     }
     
+    /* Hide navigation links by default on mobile */
     .nav-links {
-        position: static;
-        background-color: transparent;
-        box-shadow: none;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        overflow: visible;
-        order: 2;
-        flex: 1;
-        margin: 0 1rem;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--card-bg);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 100px;
+        transition: right 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+    }
+    
+    .nav-links.active {
+        right: 0;
     }
     
     .nav-links li {
-        margin: 0 0.2rem;
-        flex: 0 0 auto;
-        padding: 0;
+        margin: 1rem 0;
+        width: 80%;
+        text-align: center;
     }
     
     .nav-links a {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.8rem;
-        white-space: nowrap;
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
         color: var(--heading-color);
+        display: block;
+        width: 100%;
+        border-radius: 12px;
+        transition: var(--transition);
     }
     
-    /* Move theme toggle to right side */
+    .nav-links a:hover {
+        background: var(--gradient-1);
+        color: white;
+        transform: none;
+    }
+    
+    /* Show burger menu on mobile */
+    .burger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 1002;
+        transition: var(--transition);
+    }
+    
+    .burger div {
+        width: 25px;
+        height: 3px;
+        background: var(--heading-color);
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 2px;
+    }
+    
+    /* Burger animation when active */
+    .burger.toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .burger.toggle .line2 {
+        opacity: 0;
+    }
+    
+    .burger.toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    /* Theme toggle positioning */
     .theme-toggle {
-        position: static;
-        order: 3;
-        background-color: transparent;
-        font-size: 1rem;
+        position: absolute;
+        top: 1rem;
+        right: 4.5rem;
+        z-index: 1002;
+        background: transparent;
+        font-size: 1.2rem;
         padding: 0.5rem;
-        margin: 0;
     }
     
+    /* Overlay when menu is open */
+    .nav-links.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+    
+    /* Hide burger menu by default on desktop */
+    .burger {
+        display: none;
+    }
+
     /* Adjust hero section */
     .hero {
         padding: 4rem 1rem 2rem;
@@ -1554,11 +1623,6 @@ footer {
     footer {
         margin-bottom: 0;
         padding: 1rem;
-    }
-    
-    /* Remove burger menu styles */
-    .burger {
-        display: none;
     }
 }
 
@@ -1739,6 +1803,17 @@ footer {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
     }
 }
 
