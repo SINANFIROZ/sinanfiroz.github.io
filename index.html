@@ -209,7 +209,18 @@
                 <p><i class="fas fa-envelope"></i> Feel free to connect with me on LinkedIn or send me a mail! Open to discussing new opportunities and collaborations.</p>
                 <div class="contact-buttons">
                     <a href="https://www.linkedin.com/in/sinanfiroz/" target="_blank" class="cta-button"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
-                    <a href="mailto:sinanfiroz18075@gmail.com?subject=Hello%20Sinan&body=Hi%20Sinan,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect..." class="cta-button secondary"><i class="fas fa-envelope"></i> Send Email</a>
+                    <a href="googlegmail://co?to=sinanfiroz18075@gmail.com&subject=Hello%20Sinan&body=Hi%20Sinan,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect..."
+   onclick="setTimeout(() => { 
+       try {
+           window.open('https://mail.google.com/mail/?view=cm&fs=1&to=sinanfiroz18075@gmail.com&su=Hello%20Sinan&body=Hi%20Sinan,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect...', '_blank');
+       } catch (e) {
+           window.location.href='mailto:sinanfiroz18075@gmail.com?subject=Hello%20Sinan&body=Hi%20Sinan,%0A%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect...';
+       }
+   }, 800);"
+   class="cta-button secondary">
+   <i class="fas fa-envelope"></i> Send Email
+</a>
+
                 </div>
             </div>
             <div class="social-links">
@@ -220,6 +231,7 @@
     </section>
 </body>
 </html>
+
 
 
 
